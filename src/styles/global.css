@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-body text-hog-text;
+    background-color: theme('colors.hog.purple');
+    background-image:
+      radial-gradient(1px 1px at 10% 15%, rgba(240, 201, 74, 0.9) 0%, transparent 60%),
+      radial-gradient(1px 1px at 25% 60%, rgba(245, 241, 230, 0.7) 0%, transparent 60%),
+      radial-gradient(1.5px 1.5px at 40% 30%, rgba(212, 175, 55, 0.8) 0%, transparent 60%),
+      radial-gradient(1px 1px at 60% 80%, rgba(245, 241, 230, 0.6) 0%, transparent 60%),
+      radial-gradient(1.5px 1.5px at 75% 20%, rgba(240, 201, 74, 0.8) 0%, transparent 60%),
+      radial-gradient(1px 1px at 85% 65%, rgba(212, 175, 55, 0.7) 0%, transparent 60%),
+      radial-gradient(1px 1px at 95% 40%, rgba(245, 241, 230, 0.5) 0%, transparent 60%),
+      radial-gradient(1.5px 1.5px at 15% 85%, rgba(240, 201, 74, 0.6) 0%, transparent 60%),
+      linear-gradient(160deg, theme('colors.hog.purple') 0%, theme('colors.hog.purpleLight') 100%);
+    background-attachment: fixed;
+    background-size: 220px 220px, 260px 260px, 180px 180px, 240px 240px, 200px 200px, 300px 300px, 260px 260px, 220px 220px, cover;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display text-hog-gold;
+  }
+
+  a {
+    @apply text-hog-gold transition-colors duration-200;
+  }
+
+  a:hover {
+    @apply text-hog-goldBright;
+  }
+}
+
+@layer components {
+  /* Rainbow-gradient divider, echoing the rainbow on the coat of arms */
+  .hog-rainbow-divider {
+    height: 4px;
+    background: linear-gradient(
+      90deg,
+      #e11d48,
+      #f97316,
+      #f0c94a,
+      #22c55e,
+      #3b82f6,
+      #8b5cf6
+    );
+  }
+
+  .hog-card {
+    @apply rounded-xl border border-hog-gold/60 bg-hog-purpleLight/30 p-6 shadow-lg backdrop-blur-sm;
+  }
+}

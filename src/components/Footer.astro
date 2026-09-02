@@ -9,14 +9,15 @@ const socialLinks = [
 ];
 ---
 
-<footer class="border-t border-gray-200 bg-white">
-  <div class="mx-auto flex max-w-4xl flex-col items-center gap-3 px-4 py-8 text-sm text-gray-600 sm:flex-row sm:justify-between">
-    <p>&copy; {year} House of Glitter. Alle rechten voorbehouden.</p>
-    <ul class="flex gap-4">
+<footer class="border-t border-hog-gold/40 bg-hog-purple">
+  <div class="hog-rainbow-divider"></div>
+  <div class="mx-auto flex max-w-4xl flex-col items-center gap-3 px-4 py-8 text-sm text-hog-text/80 sm:flex-row sm:justify-between">
+    <p class="font-display text-hog-gold">&copy; {year} House of Glitter. Alle rechten voorbehouden.</p>
+    <ul class="flex gap-5">
       {
         socialLinks.map((link) => (
           <li>
-            <a href={link.href} class="hover:underline">
+            <a href={link.href} class="text-hog-gold hover:text-hog-goldBright">
               {link.label}
             </a>
           </li>

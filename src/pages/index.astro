@@ -3,19 +3,20 @@ import Layout from '../components/Layout.astro';
 ---
 
 <Layout title="House of Glitter — Home">
-  <section class="flex flex-col items-center gap-6 text-center">
-    <!-- TODO: nog ongestyled/geen kleur-theming, komt in Fase 2 -->
+  <section class="flex flex-col items-center gap-6 py-8 text-center">
     <img
       src="/wapenschild.jpg"
       alt="Familiewapen House of Glitter"
-      class="w-64 max-w-full"
+      class="w-72 max-w-full rounded-lg drop-shadow-[0_0_35px_rgba(212,175,55,0.55)] sm:w-96"
     />
-    <h1 class="text-4xl font-bold">House of Glitter</h1>
-    <p class="text-xl italic text-gray-600">To Glitter or Die</p>
-    <p class="max-w-xl text-gray-700">
+    <h1 class="text-4xl font-bold sm:text-5xl">House of Glitter</h1>
+    <p class="font-display text-xl italic text-hog-goldBright sm:text-2xl">To Glitter or Die</p>
+    <p class="max-w-xl text-hog-text/90">
       Placeholder introtekst: hier komt binnenkort een korte introductie over
       House of Glitter — wie we zijn, waar we voor staan en wat je hier kunt
       verwachten.
     </p>
   </section>
+
+  <div class="hog-rainbow-divider -mx-4 my-4 rounded-full sm:mx-0"></div>
 </Layout>

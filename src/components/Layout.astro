@@ -1,6 +1,7 @@
 ---
 import Header from './Header.astro';
 import Footer from './Footer.astro';
+import '../styles/global.css';
 
 interface Props {
   title?: string;
@@ -18,8 +19,15 @@ const { title = 'House of Glitter', description = 'House of Glitter — To Glitt
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="description" content={description} />
     <title>{title}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body class="flex min-h-screen flex-col bg-white text-gray-900">
+  <body class="flex min-h-screen flex-col">
     <Header />
     <main class="mx-auto w-full max-w-4xl flex-1 px-4 py-8">
       <slot />

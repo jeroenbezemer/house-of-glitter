@@ -9,8 +9,8 @@ const { type, id, label } = Astro.props;
 const src = `https://open.spotify.com/embed/${type}/${id}`;
 ---
 
-<div class="w-full">
-  {label && <p class="mb-2 text-sm text-gray-600">{label}</p>}
+<div class="hog-card w-full">
+  {label && <p class="mb-3 font-display text-hog-goldBright">{label}</p>}
   <iframe
     class="rounded-lg"
     style="border-radius:12px"

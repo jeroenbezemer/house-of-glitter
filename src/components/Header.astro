@@ -10,18 +10,22 @@ const navItems = [
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="border-b border-gray-200 bg-white">
+<header class="sticky top-0 z-50 border-b border-hog-gold/40 bg-hog-purple/95 backdrop-blur-sm">
   <nav class="mx-auto flex max-w-4xl items-center justify-between px-4 py-4">
-    <a href="/" class="text-lg font-bold">House of Glitter</a>
-    <ul class="flex gap-6 text-sm">
+    <a href="/" class="font-display text-xl font-semibold text-hog-gold hover:text-hog-goldBright">
+      House of Glitter
+    </a>
+
+    <!-- Desktop nav -->
+    <ul class="hidden gap-8 text-sm md:flex">
       {
         navItems.map((item) => (
           <li>
             <a
               href={item.href}
               class:list={[
-                'hover:underline',
-                { 'font-semibold underline': currentPath === item.href },
+                'hog-nav-link relative pb-1 text-hog-text hover:text-hog-goldBright',
+                { 'text-hog-goldBright hog-nav-link--active': currentPath === item.href },
               ]}
             >
               {item.label}
@@ -30,5 +34,73 @@ const currentPath = Astro.url.pathname;
         ))
       }
     </ul>
+
+    <!-- Hamburger button (mobile only) -->
+    <button
+      id="hog-menu-toggle"
+      type="button"
+      class="flex h-9 w-9 flex-col items-center justify-center gap-1.5 md:hidden"
+      aria-controls="hog-mobile-menu"
+      aria-expanded="false"
+      aria-label="Menu openen"
+    >
+      <span class="h-0.5 w-6 rounded bg-hog-gold transition-transform"></span>
+      <span class="h-0.5 w-6 rounded bg-hog-gold transition-opacity"></span>
+      <span class="h-0.5 w-6 rounded bg-hog-gold transition-transform"></span>
+    </button>
   </nav>
+
+  <!-- Mobile nav panel -->
+  <ul
+    id="hog-mobile-menu"
+    class="hidden flex-col gap-1 border-t border-hog-gold/30 px-4 pb-4 pt-2 md:hidden"
+  >
+    {
+      navItems.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class:list={[
+              'block rounded px-2 py-2 text-hog-text hover:text-hog-goldBright',
+              { 'text-hog-goldBright underline decoration-hog-gold underline-offset-4': currentPath === item.href },
+            ]}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
 </header>
+
+<style>
+  /* Gouden onderstreping bij hover en op de actieve pagina */
+  .hog-nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 2px;
+    background-color: theme('colors.hog.gold');
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.2s ease;
+  }
+
+  .hog-nav-link:hover::after,
+  .hog-nav-link--active::after {
+    transform: scaleX(1);
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('hog-menu-toggle');
+  const menu = document.getElementById('hog-mobile-menu');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('flex');
+    menu?.classList.toggle('hidden');
+    toggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
+  });
+</script>
