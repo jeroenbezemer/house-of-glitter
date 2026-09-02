@@ -1,0 +1,34 @@
+---
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/music', label: 'Muziek' },
+  { href: '/story', label: 'Verhaal' },
+  { href: '/shop', label: 'Shop' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="border-b border-gray-200 bg-white">
+  <nav class="mx-auto flex max-w-4xl items-center justify-between px-4 py-4">
+    <a href="/" class="text-lg font-bold">House of Glitter</a>
+    <ul class="flex gap-6 text-sm">
+      {
+        navItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class:list={[
+                'hover:underline',
+                { 'font-semibold underline': currentPath === item.href },
+              ]}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>

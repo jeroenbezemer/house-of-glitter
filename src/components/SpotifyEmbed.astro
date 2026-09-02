@@ -1,0 +1,25 @@
+---
+interface Props {
+  type: 'track' | 'album';
+  id: string;
+  label?: string;
+}
+
+const { type, id, label } = Astro.props;
+const src = `https://open.spotify.com/embed/${type}/${id}`;
+---
+
+<div class="w-full">
+  {label && <p class="mb-2 text-sm text-gray-600">{label}</p>}
+  <iframe
+    class="rounded-lg"
+    style="border-radius:12px"
+    src={src}
+    width="100%"
+    height={type === 'album' ? 352 : 152}
+    frameborder="0"
+    allowfullscreen
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+    loading="lazy"
+  ></iframe>
+</div>
