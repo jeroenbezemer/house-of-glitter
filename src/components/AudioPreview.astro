@@ -7,22 +7,8 @@ interface Props {
 const { src, label = 'Audio preview' } = Astro.props;
 ---
 
-<div class="hog-audio flex items-center gap-3" data-audio-preview>
+<div class="hog-audio flex w-full items-center gap-3" data-audio-preview>
   <audio class="hidden" preload="metadata" src={src}></audio>
-
-  <button
-    type="button"
-    class="hog-audio__play flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-hog-gold text-hog-purple shadow-md transition-colors hover:bg-hog-goldBright focus:outline-none focus-visible:ring-2 focus-visible:ring-hog-goldBright focus-visible:ring-offset-2 focus-visible:ring-offset-hog-purple sm:h-14 sm:w-14"
-    aria-label={`Play: ${label}`}
-    aria-pressed="false"
-  >
-    <svg class="hog-audio__icon-play h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M8 5v14l11-7z"></path>
-    </svg>
-    <svg class="hog-audio__icon-pause hidden h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M6 5h4v14H6zM14 5h4v14h-4z"></path>
-    </svg>
-  </button>
 
   <div class="min-w-0 flex-1">
     <div
@@ -48,6 +34,20 @@ const { src, label = 'Audio preview' } = Astro.props;
       <span class="hog-audio__duration">0:00</span>
     </div>
   </div>
+
+  <button
+    type="button"
+    class="hog-audio__play flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-hog-gold text-hog-purple shadow-md transition-colors hover:bg-hog-goldBright focus:outline-none focus-visible:ring-2 focus-visible:ring-hog-goldBright focus-visible:ring-offset-2 focus-visible:ring-offset-hog-purple sm:h-14 sm:w-14"
+    aria-label={`Play: ${label}`}
+    aria-pressed="false"
+  >
+    <svg class="hog-audio__icon-play h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M8 5v14l11-7z"></path>
+    </svg>
+    <svg class="hog-audio__icon-pause hidden h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M6 5h4v14H6zM14 5h4v14h-4z"></path>
+    </svg>
+  </button>
 </div>
 
 <script>

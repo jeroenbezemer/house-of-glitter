@@ -1,7 +1,7 @@
 ---
 import Layout from '../components/Layout.astro';
 import SpotifyEmbed from '../components/SpotifyEmbed.astro';
-import AudioPreview from '../components/AudioPreview.astro';
+import TrackPreviewCard from '../components/TrackPreviewCard.astro';
 
 // TODO: dit zijn tijdelijke Spotify-ID's. Vervang deze zodra de echte releases
 // live staan.
@@ -30,44 +30,55 @@ import AudioPreview from '../components/AudioPreview.astro';
     <!-- 1. Single: To Glitter or Die (Beach Club Anthem) -->
     <!-- TODO: zodra deze single live staat op Spotify, vervang deze kaart
          door een <SpotifyEmbed type="track" id="..." label="To Glitter or
-         Die (Beach Club Anthem)" />, net als Glitter Boy en Estelle. -->
-    <div class="hog-card w-full">
-      <p class="mb-4 font-display text-hog-goldBright">To Glitter or Die (Beach Club Anthem)</p>
-      <div class="flex items-center gap-4">
-        <img
-          src="/images/covers/to-glitter-or-die-single.png"
-          alt="Cover art — To Glitter or Die (Beach Club Anthem)"
-          class="h-16 w-16 shrink-0 rounded-md object-cover sm:h-20 sm:w-20"
-        />
-        <div>
-          <p class="font-bold text-hog-text">To Glitter or Die</p>
-          <p class="mt-1 font-display text-xs italic uppercase tracking-widest text-hog-gold">
-            Coming soon on Spotify
-          </p>
-        </div>
-      </div>
-
-      <div class="mt-4 border-t border-hog-gold/30 pt-4">
-        <AudioPreview
-          src="/audio/previews/to-glitter-or-die-beach-club-anthem-preview.mp3"
-          label="To Glitter or Die (Beach Club Anthem) — preview"
-        />
-      </div>
-    </div>
+         Die (Beach Club Anthem)" />, net als hieronder bewaard voor
+         Glitter Boy en Estelle. -->
+    <TrackPreviewCard
+      heading="To Glitter or Die (Beach Club Anthem)"
+      title="To Glitter or Die"
+      badge="Coming soon on Spotify"
+      artworkSrc="/images/covers/to-glitter-or-die-single.png"
+      artworkAlt="Cover art — To Glitter or Die (Beach Club Anthem)"
+      audioSrc="/audio/previews/to-glitter-or-die-beach-club-anthem-preview.mp3"
+      audioLabel="To Glitter or Die (Beach Club Anthem) — preview"
+    />
 
     <!-- 2. Glitter Boy -->
-    <SpotifyEmbed
-      type="track"
-      id="697bFWgzBRm6bmnYWd8GyD"
-      label="Glitter Boy — tijdelijke preview"
+    <TrackPreviewCard
+      heading="Glitter Boy"
+      title="Glitter Boy"
+      audioSrc="/audio/previews/glitter-boy-preview.mp3"
+      audioLabel="Glitter Boy — preview"
+      artworkAlt="Artwork — Glitter Boy (placeholder)"
     />
 
     <!-- 3. Estelle -->
-    <SpotifyEmbed
-      type="track"
-      id="4VVfzoh8MuGWLIpcF8vB1O"
-      label="Estelle — tijdelijke preview"
+    <TrackPreviewCard
+      heading="Estelle"
+      title="Estelle"
+      audioSrc="/audio/previews/estelle-preview.mp3"
+      audioLabel="Estelle — preview"
+      artworkAlt="Artwork — Estelle (placeholder)"
     />
+
+    <!-- TODO: Spotify-embeds terugzetten zodra de releases live staan —
+         voorbeeld hieronder bewaard (niet gerenderd, alleen als referentie
+         in de code). Zodra live: vervang de TrackPreviewCard's hierboven
+         voor Glitter Boy en Estelle weer door deze SpotifyEmbed-aanroepen.
+    {(
+      <SpotifyEmbed
+        type="track"
+        id="697bFWgzBRm6bmnYWd8GyD"
+        label="Glitter Boy — tijdelijke preview"
+      />
+    )}
+    {(
+      <SpotifyEmbed
+        type="track"
+        id="4VVfzoh8MuGWLIpcF8vB1O"
+        label="Estelle — tijdelijke preview"
+      />
+    )}
+    -->
   </div>
 
   <!-- 4. Full album, visueel gescheiden van de singles hierboven -->
