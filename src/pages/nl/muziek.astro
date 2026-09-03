@@ -1,18 +1,18 @@
 ---
-import Layout from '../components/Layout.astro';
-import SpotifyEmbed from '../components/SpotifyEmbed.astro';
-import TrackPreviewCard from '../components/TrackPreviewCard.astro';
-import { en } from '../i18n/en';
+import Layout from '../../components/Layout.astro';
+import SpotifyEmbed from '../../components/SpotifyEmbed.astro';
+import TrackPreviewCard from '../../components/TrackPreviewCard.astro';
+import { nl } from '../../i18n/nl';
 
 // TODO: dit zijn tijdelijke Spotify-ID's. Vervang deze zodra de echte releases
 // live staan.
 ---
 
-<Layout title="House of Glitter — Music" lang="en" page="music">
-  <h1 class="mb-6 text-3xl font-bold">Music</h1>
+<Layout title="House of Glitter — Muziek" lang="nl" page="music">
+  <h1 class="mb-6 text-3xl font-bold">Muziek</h1>
 
   <div class="mb-10 max-w-2xl font-body">
-    <p class="text-hog-text/90">{en.music.description}</p>
+    <p class="text-hog-text/90">{nl.music.description}</p>
   </div>
 
   <div class="flex flex-col gap-8">
@@ -24,7 +24,7 @@ import { en } from '../i18n/en';
     <TrackPreviewCard
       heading="To Glitter or Die (Beach Club Anthem)"
       title="To Glitter or Die"
-      badge={en.music.comingSoon}
+      badge={nl.music.comingSoon}
       artworkSrc="/images/covers/to-glitter-or-die-single.png"
       artworkAlt="Cover art — To Glitter or Die (Beach Club Anthem)"
       audioSrc="/audio/previews/to-glitter-or-die-beach-club-anthem-preview.mp3"
@@ -76,7 +76,7 @@ import { en } from '../i18n/en';
     <div class="flex flex-col gap-6 sm:flex-row sm:items-start">
       <img
         src="/images/covers/to-glitter-or-die-album.png"
-        alt="Album cover — To Glitter or Die"
+        alt="Albumhoes — To Glitter or Die"
         class="w-48 shrink-0 rounded-xl border border-hog-gold object-cover sm:w-56"
       />
       <div class="flex-1">

@@ -2,17 +2,25 @@
 import Header from './Header.astro';
 import Footer from './Footer.astro';
 import '../styles/global.css';
+import type { Locale, PageKey } from '../i18n/routes';
 
 interface Props {
   title?: string;
   description?: string;
+  lang?: Locale;
+  page?: PageKey;
 }
 
-const { title = 'House of Glitter', description = 'House of Glitter — To Glitter or Die' } = Astro.props;
+const {
+  title = 'House of Glitter',
+  description = 'House of Glitter — To Glitter or Die',
+  lang = 'en',
+  page = 'home',
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang="nl">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,10 +36,10 @@ const { title = 'House of Glitter', description = 'House of Glitter — To Glitt
     />
   </head>
   <body class="flex min-h-screen flex-col">
-    <Header />
+    <Header lang={lang} page={page} />
     <main class="mx-auto w-full max-w-4xl flex-1 px-4 py-8">
       <slot />
     </main>
-    <Footer />
+    <Footer lang={lang} />
   </body>
 </html>

@@ -1,18 +1,26 @@
 ---
+import type { Locale } from '../i18n/routes';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
 const year = new Date().getFullYear();
+const rightsText = lang === 'nl' ? 'Alle rechten voorbehouden.' : 'All rights reserved.';
 
 // TODO: vervang placeholder social links door de echte URL's zodra die bekend zijn
 const socialLinks = [
   { label: 'Spotify', href: '#' },
   { label: 'Instagram', href: '#' },
-  { label: 'E-mail', href: 'mailto:info@example.com' },
+  { label: lang === 'nl' ? 'E-mail' : 'Email', href: 'mailto:info@example.com' },
 ];
 ---
 
 <footer class="border-t border-hog-gold/40 bg-hog-purple">
   <div class="hog-rainbow-divider"></div>
   <div class="mx-auto flex max-w-4xl flex-col items-center gap-3 px-4 py-8 text-sm text-hog-text/80 sm:flex-row sm:justify-between">
-    <p class="font-display text-hog-gold">&copy; {year} House of Glitter. Alle rechten voorbehouden.</p>
+    <p class="font-display text-hog-gold">&copy; {year} House of Glitter. {rightsText}</p>
     <ul class="flex gap-5">
       {
         socialLinks.map((link) => (

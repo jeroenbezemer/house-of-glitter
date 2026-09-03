@@ -1,23 +1,11 @@
 ---
 import Layout from '../components/Layout.astro';
+import { en } from '../i18n/en';
 ---
 
-<Layout title="House of Glitter — Verhaal">
-  <h1 class="mb-6 text-3xl font-bold">Verhaal</h1>
+<Layout title="House of Glitter — Story" lang="en" page="story">
+  <h1 class="mb-6 text-3xl font-bold">Story</h1>
   <div class="hog-card max-w-2xl font-body">
-    <p class="text-hog-text/90">Every great house has a crest — so we made one of our own.</p>
-    <p class="mt-4 text-hog-text/90">
-      At the center sits the disco ball: our world in miniature, spinning light in
-      every direction, because that's exactly what this project is about. The
-      crossed microphones stand guard on either side, our own golden lions, always
-      ready to perform. Above it all, a crown — not for royalty, but for the
-      confidence to own who you are.
-    </p>
-    <p class="mt-4 text-hog-text/90">
-      The rainbow arching overhead is our promise: there's room here for every
-      color, every sound, every version of yourself. And underneath it all, our
-      motto says everything you need to know about how we live:
-      <strong class="text-hog-gold">To Glitter or Die</strong>.
-    </p>
+    <p class="text-hog-text/90">{en.story.body}</p>
   </div>
 </Layout>

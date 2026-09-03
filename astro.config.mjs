@@ -5,4 +5,11 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
   output: 'static',
   integrations: [tailwind()],
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'nl'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
 });

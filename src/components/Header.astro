@@ -1,39 +1,82 @@
 ---
-const navItems = [
-  { href: '/', label: 'Home' },
-  { href: '/music', label: 'Muziek' },
-  { href: '/story', label: 'Verhaal' },
-  { href: '/shop', label: 'Shop' },
-  { href: '/contact', label: 'Contact' },
-];
+import { routes, type PageKey, type Locale } from '../i18n/routes';
 
-const currentPath = Astro.url.pathname;
+interface Props {
+  lang: Locale;
+  page: PageKey;
+}
+
+const { lang, page } = Astro.props;
+
+const labels: Record<Locale, Record<PageKey, string>> = {
+  en: { home: 'Home', music: 'Music', story: 'Story', shop: 'Shop', contact: 'Contact' },
+  nl: { home: 'Home', music: 'Muziek', story: 'Verhaal', shop: 'Shop', contact: 'Contact' },
+};
+
+const pageKeys: PageKey[] = ['home', 'music', 'story', 'shop', 'contact'];
+
+const navItems = pageKeys.map((key) => ({
+  key,
+  href: routes[key][lang],
+  label: labels[lang][key],
+}));
+
+const homeHref = routes.home[lang];
 ---
 
 <header class="sticky top-0 z-50 border-b border-hog-gold/40 bg-hog-purple/95 backdrop-blur-sm">
   <nav class="mx-auto flex max-w-4xl items-center justify-between px-4 py-4">
-    <a href="/" class="font-display text-xl font-semibold text-hog-gold hover:text-hog-goldBright">
+    <a href={homeHref} class="font-display text-xl font-semibold text-hog-gold hover:text-hog-goldBright">
       House of Glitter
     </a>
 
     <!-- Desktop nav -->
-    <ul class="hidden gap-8 text-sm md:flex">
-      {
-        navItems.map((item) => (
-          <li>
-            <a
-              href={item.href}
-              class:list={[
-                'hog-nav-link relative pb-1 text-hog-text hover:text-hog-goldBright',
-                { 'text-hog-goldBright hog-nav-link--active': currentPath === item.href },
-              ]}
-            >
-              {item.label}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+    <div class="hidden items-center gap-6 md:flex">
+      <ul class="flex gap-8 text-sm">
+        {
+          navItems.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class:list={[
+                  'hog-nav-link relative pb-1 text-hog-text hover:text-hog-goldBright',
+                  { 'text-hog-goldBright hog-nav-link--active': item.key === page },
+                ]}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <!-- Language switcher -->
+      <div class="flex items-center gap-1.5 border-l border-hog-gold/30 pl-6 text-xs font-semibold tracking-wide">
+        <a
+          href={routes[page].en}
+          aria-label="English"
+          aria-current={lang === 'en' ? 'true' : undefined}
+          class:list={[
+            'transition-colors',
+            lang === 'en' ? 'text-hog-gold' : 'text-hog-text/40 hover:text-hog-goldBright',
+          ]}
+        >
+          EN
+        </a>
+        <span class="text-hog-text/30">/</span>
+        <a
+          href={routes[page].nl}
+          aria-label="Nederlands"
+          aria-current={lang === 'nl' ? 'true' : undefined}
+          class:list={[
+            'transition-colors',
+            lang === 'nl' ? 'text-hog-gold' : 'text-hog-text/40 hover:text-hog-goldBright',
+          ]}
+        >
+          NL
+        </a>
+      </div>
+    </div>
 
     <!-- Hamburger button (mobile only) -->
     <button
@@ -62,7 +105,7 @@ const currentPath = Astro.url.pathname;
             href={item.href}
             class:list={[
               'block rounded px-2 py-2 text-hog-text hover:text-hog-goldBright',
-              { 'text-hog-goldBright underline decoration-hog-gold underline-offset-4': currentPath === item.href },
+              { 'text-hog-goldBright underline decoration-hog-gold underline-offset-4': item.key === page },
             ]}
           >
             {item.label}
@@ -70,6 +113,25 @@ const currentPath = Astro.url.pathname;
         </li>
       ))
     }
+    <li class="mt-2 flex items-center gap-2 border-t border-hog-gold/20 px-2 pt-3 text-xs font-semibold tracking-wide">
+      <a
+        href={routes[page].en}
+        aria-label="English"
+        aria-current={lang === 'en' ? 'true' : undefined}
+        class:list={[lang === 'en' ? 'text-hog-gold' : 'text-hog-text/40 hover:text-hog-goldBright']}
+      >
+        EN
+      </a>
+      <span class="text-hog-text/30">/</span>
+      <a
+        href={routes[page].nl}
+        aria-label="Nederlands"
+        aria-current={lang === 'nl' ? 'true' : undefined}
+        class:list={[lang === 'nl' ? 'text-hog-gold' : 'text-hog-text/40 hover:text-hog-goldBright']}
+      >
+        NL
+      </a>
+    </li>
   </ul>
 </header>
 
