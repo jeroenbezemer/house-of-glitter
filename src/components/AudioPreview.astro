@@ -1,0 +1,170 @@
+---
+interface Props {
+  src: string;
+  label?: string;
+}
+
+const { src, label = 'Audio preview' } = Astro.props;
+---
+
+<div class="hog-audio flex items-center gap-3" data-audio-preview>
+  <audio class="hidden" preload="metadata" src={src}></audio>
+
+  <button
+    type="button"
+    class="hog-audio__play flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-hog-gold text-hog-purple shadow-md transition-colors hover:bg-hog-goldBright focus:outline-none focus-visible:ring-2 focus-visible:ring-hog-goldBright focus-visible:ring-offset-2 focus-visible:ring-offset-hog-purple sm:h-14 sm:w-14"
+    aria-label={`Play: ${label}`}
+    aria-pressed="false"
+  >
+    <svg class="hog-audio__icon-play h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M8 5v14l11-7z"></path>
+    </svg>
+    <svg class="hog-audio__icon-pause hidden h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M6 5h4v14H6zM14 5h4v14h-4z"></path>
+    </svg>
+  </button>
+
+  <div class="min-w-0 flex-1">
+    <div
+      class="hog-audio__bar group relative flex h-6 w-full cursor-pointer items-center rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-hog-goldBright"
+      role="slider"
+      tabindex="0"
+      aria-label={`${label} — voortgang`}
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-valuenow="0"
+    >
+      <div class="h-1.5 w-full overflow-hidden rounded-full bg-hog-purpleLight/70">
+        <div class="hog-audio__fill h-full w-0 rounded-full bg-hog-gold transition-[width] duration-100 ease-linear group-hover:bg-hog-goldBright"></div>
+      </div>
+      <div
+        class="hog-audio__thumb pointer-events-none absolute h-3.5 w-3.5 -translate-x-1/2 rounded-full bg-hog-goldBright opacity-0 shadow transition-opacity group-hover:opacity-100"
+        style="left: 0%"
+      >
+      </div>
+    </div>
+    <div class="mt-1 flex justify-between font-body text-xs text-hog-text/70">
+      <span class="hog-audio__current">0:00</span>
+      <span class="hog-audio__duration">0:00</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  function formatTime(seconds: number) {
+    if (!isFinite(seconds) || seconds < 0) return '0:00';
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  }
+
+  function initAudioPreview(root: HTMLElement) {
+    const audio = root.querySelector('audio');
+    const playButton = root.querySelector<HTMLButtonElement>('.hog-audio__play');
+    const iconPlay = root.querySelector('.hog-audio__icon-play');
+    const iconPause = root.querySelector('.hog-audio__icon-pause');
+    const bar = root.querySelector<HTMLElement>('.hog-audio__bar');
+    const fill = root.querySelector<HTMLElement>('.hog-audio__fill');
+    const thumb = root.querySelector<HTMLElement>('.hog-audio__thumb');
+    const currentEl = root.querySelector('.hog-audio__current');
+    const durationEl = root.querySelector('.hog-audio__duration');
+
+    if (!audio || !playButton || !bar || !fill || !thumb || !currentEl || !durationEl) return;
+
+    let isDragging = false;
+
+    const setProgress = (ratio: number) => {
+      const clamped = Math.min(1, Math.max(0, ratio));
+      fill.style.width = `${clamped * 100}%`;
+      thumb.style.left = `${clamped * 100}%`;
+      bar.setAttribute('aria-valuenow', String(Math.round(clamped * 100)));
+    };
+
+    const seekFromEvent = (event: PointerEvent) => {
+      const rect = bar.getBoundingClientRect();
+      const ratio = (event.clientX - rect.left) / rect.width;
+      const clamped = Math.min(1, Math.max(0, ratio));
+      if (audio.duration) {
+        audio.currentTime = clamped * audio.duration;
+      }
+      setProgress(clamped);
+    };
+
+    playButton.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    });
+
+    audio.addEventListener('play', () => {
+      iconPlay?.classList.add('hidden');
+      iconPause?.classList.remove('hidden');
+      playButton.setAttribute('aria-pressed', 'true');
+    });
+
+    audio.addEventListener('pause', () => {
+      iconPlay?.classList.remove('hidden');
+      iconPause?.classList.add('hidden');
+      playButton.setAttribute('aria-pressed', 'false');
+    });
+
+    audio.addEventListener('ended', () => {
+      setProgress(0);
+    });
+
+    audio.addEventListener('loadedmetadata', () => {
+      durationEl.textContent = formatTime(audio.duration);
+    });
+
+    // Metadata can already be available (e.g. cached) by the time this
+    // script runs, in which case 'loadedmetadata' never fires here.
+    if (audio.readyState >= 1) {
+      durationEl.textContent = formatTime(audio.duration);
+    }
+
+    audio.addEventListener('timeupdate', () => {
+      if (isDragging) return;
+      currentEl.textContent = formatTime(audio.currentTime);
+      if (audio.duration) {
+        setProgress(audio.currentTime / audio.duration);
+      }
+    });
+
+    bar.addEventListener('pointerdown', (event) => {
+      isDragging = true;
+      bar.setPointerCapture(event.pointerId);
+      seekFromEvent(event);
+    });
+
+    bar.addEventListener('pointermove', (event) => {
+      if (!isDragging) return;
+      seekFromEvent(event);
+    });
+
+    const stopDragging = (event: PointerEvent) => {
+      if (!isDragging) return;
+      isDragging = false;
+      seekFromEvent(event);
+      currentEl.textContent = formatTime(audio.currentTime);
+    };
+
+    bar.addEventListener('pointerup', stopDragging);
+    bar.addEventListener('pointercancel', stopDragging);
+
+    bar.addEventListener('keydown', (event) => {
+      if (!audio.duration) return;
+      const step = 5;
+      if (event.key === 'ArrowRight') {
+        audio.currentTime = Math.min(audio.duration, audio.currentTime + step);
+      } else if (event.key === 'ArrowLeft') {
+        audio.currentTime = Math.max(0, audio.currentTime - step);
+      }
+    });
+  }
+
+  document
+    .querySelectorAll<HTMLElement>('[data-audio-preview]')
+    .forEach((root) => initAudioPreview(root));
+</script>

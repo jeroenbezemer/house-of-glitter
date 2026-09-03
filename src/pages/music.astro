@@ -1,6 +1,7 @@
 ---
 import Layout from '../components/Layout.astro';
 import SpotifyEmbed from '../components/SpotifyEmbed.astro';
+import AudioPreview from '../components/AudioPreview.astro';
 
 // TODO: dit zijn tijdelijke Spotify-ID's. Vervang deze zodra de echte releases
 // live staan.
@@ -44,6 +45,13 @@ import SpotifyEmbed from '../components/SpotifyEmbed.astro';
             Coming soon on Spotify
           </p>
         </div>
+      </div>
+
+      <div class="mt-4 border-t border-hog-gold/30 pt-4">
+        <AudioPreview
+          src="/audio/previews/to-glitter-or-die-beach-club-anthem-preview.mp3"
+          label="To Glitter or Die (Beach Club Anthem) — preview"
+        />
       </div>
     </div>
 
