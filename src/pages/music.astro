@@ -27,21 +27,24 @@ import SpotifyEmbed from '../components/SpotifyEmbed.astro';
 
   <div class="flex flex-col gap-8">
     <!-- 1. Single: To Glitter or Die (Beach Club Anthem) -->
-    <div>
-      <div class="mb-4 flex flex-col items-start gap-3 sm:flex-row sm:items-end sm:gap-4">
-        <!-- TODO: album cover wordt later toegevoegd door de gebruiker -->
-        <div class="aspect-square w-32 shrink-0 rounded-lg border border-hog-gold bg-hog-purple sm:w-40"></div>
-        <p class="font-display text-xs italic uppercase tracking-widest text-hog-gold">
-          Out soon on Spotify
-        </p>
+    <!-- TODO: zodra deze single live staat op Spotify, vervang deze kaart
+         door een <SpotifyEmbed type="track" id="..." label="To Glitter or
+         Die (Beach Club Anthem)" />, net als Glitter Boy en Estelle. -->
+    <div class="hog-card w-full">
+      <p class="mb-4 font-display text-hog-goldBright">To Glitter or Die (Beach Club Anthem)</p>
+      <div class="flex items-center gap-4">
+        <img
+          src="/images/covers/to-glitter-or-die-single.png"
+          alt="Cover art — To Glitter or Die (Beach Club Anthem)"
+          class="h-16 w-16 shrink-0 rounded-md object-cover sm:h-20 sm:w-20"
+        />
+        <div>
+          <p class="font-bold text-hog-text">To Glitter or Die</p>
+          <p class="mt-1 font-display text-xs italic uppercase tracking-widest text-hog-gold">
+            Coming soon on Spotify
+          </p>
+        </div>
       </div>
-      <!-- TODO: tijdelijk dezelfde track-ID als "Glitter Boy" hergebruikt.
-           Vervang door de echte track-ID van deze single zodra die live staat. -->
-      <SpotifyEmbed
-        type="track"
-        id="697bFWgzBRm6bmnYWd8GyD"
-        label="To Glitter or Die (Beach Club Anthem)"
-      />
     </div>
 
     <!-- 2. Glitter Boy -->
@@ -62,12 +65,21 @@ import SpotifyEmbed from '../components/SpotifyEmbed.astro';
   <!-- 4. Full album, visueel gescheiden van de singles hierboven -->
   <div class="mt-14 border-t border-hog-gold/30 pt-10">
     <h2 class="mb-4 text-2xl font-bold">Full Album</h2>
-    <!-- TODO: dit is tijdelijke albuminhoud. Vervang door het echte album
-         zodra dat gereleased is. -->
-    <SpotifyEmbed
-      type="album"
-      id="7yY1t6U4nDXv5sG1LXnAol"
-      label="Coming soon — full album"
-    />
+    <div class="flex flex-col gap-6 sm:flex-row sm:items-start">
+      <img
+        src="/images/covers/to-glitter-or-die-album.png"
+        alt="Albumhoes — To Glitter or Die"
+        class="w-48 shrink-0 rounded-xl border border-hog-gold object-cover sm:w-56"
+      />
+      <div class="flex-1">
+        <!-- TODO: dit is tijdelijke albuminhoud. Vervang door het echte album
+             zodra dat gereleased is. -->
+        <SpotifyEmbed
+          type="album"
+          id="7yY1t6U4nDXv5sG1LXnAol"
+          label="Coming soon — full album"
+        />
+      </div>
+    </div>
   </div>
 </Layout>
