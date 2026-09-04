@@ -7,10 +7,10 @@ interface Props {
   artworkSrc?: string;
   artworkAlt: string;
   audioSrc: string;
-  audioLabel: string;
+  trackName: string;
 }
 
-const { heading, badge, artworkSrc, artworkAlt, audioSrc, audioLabel } = Astro.props;
+const { heading, badge, artworkSrc, artworkAlt, audioSrc, trackName } = Astro.props;
 ---
 
 <div class="hog-card w-full">
@@ -42,6 +42,6 @@ const { heading, badge, artworkSrc, artworkAlt, audioSrc, audioLabel } = Astro.p
   </div>
 
   <div class="mt-4">
-    <AudioPreview src={audioSrc} label={audioLabel} />
+    <AudioPreview src={audioSrc} trackName={trackName} />
   </div>
 </div>

@@ -1,10 +1,19 @@
 ---
+import { en } from '../i18n/en';
+import { nl } from '../i18n/nl';
+
 interface Props {
   src: string;
-  label?: string;
+  trackName: string;
 }
 
-const { src, label = 'Audio preview' } = Astro.props;
+const { src, trackName } = Astro.props;
+
+const locale = Astro.currentLocale === 'nl' ? 'nl' : 'en';
+const dict = locale === 'nl' ? nl : en;
+const playLabel = dict.music.playPreview(trackName);
+const pauseLabel = dict.music.pausePreview(trackName);
+const progressLabel = locale === 'nl' ? `${trackName} — voortgang` : `${trackName} — progress`;
 ---
 
 <div class="hog-audio flex w-full items-center gap-3" data-audio-preview>
@@ -15,7 +24,7 @@ const { src, label = 'Audio preview' } = Astro.props;
       class="hog-audio__bar group relative flex h-6 w-full cursor-pointer items-center rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-hog-goldBright"
       role="slider"
       tabindex="0"
-      aria-label={`${label} — voortgang`}
+      aria-label={progressLabel}
       aria-valuemin="0"
       aria-valuemax="100"
       aria-valuenow="0"
@@ -38,7 +47,9 @@ const { src, label = 'Audio preview' } = Astro.props;
   <button
     type="button"
     class="hog-audio__play flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-hog-gold text-hog-purple shadow-md transition-colors hover:bg-hog-goldBright focus:outline-none focus-visible:ring-2 focus-visible:ring-hog-goldBright focus-visible:ring-offset-2 focus-visible:ring-offset-hog-purple sm:h-14 sm:w-14"
-    aria-label={`Play: ${label}`}
+    aria-label={playLabel}
+    data-play-label={playLabel}
+    data-pause-label={pauseLabel}
     aria-pressed="false"
   >
     <svg class="hog-audio__icon-play h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -102,12 +113,16 @@ const { src, label = 'Audio preview' } = Astro.props;
       iconPlay?.classList.add('hidden');
       iconPause?.classList.remove('hidden');
       playButton.setAttribute('aria-pressed', 'true');
+      const pauseLabel = playButton.dataset.pauseLabel;
+      if (pauseLabel) playButton.setAttribute('aria-label', pauseLabel);
     });
 
     audio.addEventListener('pause', () => {
       iconPlay?.classList.remove('hidden');
       iconPause?.classList.add('hidden');
       playButton.setAttribute('aria-pressed', 'false');
+      const playLabel = playButton.dataset.playLabel;
+      if (playLabel) playButton.setAttribute('aria-label', playLabel);
     });
 
     audio.addEventListener('ended', () => {

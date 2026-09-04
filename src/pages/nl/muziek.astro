@@ -6,6 +6,7 @@ import { nl } from '../../i18n/nl';
 
 // TODO: dit zijn tijdelijke Spotify-ID's. Vervang deze zodra de echte releases
 // live staan.
+const singleTrackId = '4hjOax118vWOwYnl5fAwXV';
 ---
 
 <Layout title="House of Glitter — Muziek" lang="nl" page="music">
@@ -17,11 +18,21 @@ import { nl } from '../../i18n/nl';
 
   <div class="flex flex-col gap-8">
     <!-- 1. Single: To Glitter or Die (Beach Club Anthem) — live op Spotify -->
-    <SpotifyEmbed
-      type="track"
-      id="4hjOax118vWOwYnl5fAwXV"
-      label="To Glitter or Die (Beach Club Anthem)"
-    />
+    <div class="flex flex-col items-start gap-3">
+      <SpotifyEmbed
+        type="track"
+        id={singleTrackId}
+        label="To Glitter or Die (Beach Club Anthem)"
+      />
+      <a
+        href={`https://open.spotify.com/track/${singleTrackId}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex min-h-11 items-center rounded px-1 font-body font-semibold text-hog-gold underline decoration-hog-gold/60 underline-offset-4 hover:text-hog-goldBright"
+      >
+        {nl.music.listenOnSpotify}
+      </a>
+    </div>
 
     <!-- TODO: AudioPreview-kaart wordt hier niet meer gerenderd nu de single
          live staat op Spotify. Referentie bewaard voor eventueel hergebruik
@@ -33,7 +44,7 @@ import { nl } from '../../i18n/nl';
         artworkSrc="/images/covers/to-glitter-or-die-single.png"
         artworkAlt="Cover art — To Glitter or Die (Beach Club Anthem)"
         audioSrc="/audio/previews/to-glitter-or-die-beach-club-anthem-preview.mp3"
-        audioLabel="To Glitter or Die (Beach Club Anthem) — preview"
+        trackName="To Glitter or Die (Beach Club Anthem)"
       />
     )}
     -->
@@ -43,7 +54,7 @@ import { nl } from '../../i18n/nl';
       heading="Glitter Boy"
       badge={nl.music.comingSoon}
       audioSrc="/audio/previews/glitter-boy-preview.mp3"
-      audioLabel="Glitter Boy — preview"
+      trackName="Glitter Boy"
       artworkAlt="Artwork — Glitter Boy (placeholder)"
     />
 
@@ -52,7 +63,7 @@ import { nl } from '../../i18n/nl';
       heading="Estelle"
       badge={nl.music.comingSoon}
       audioSrc="/audio/previews/estelle-preview.mp3"
-      audioLabel="Estelle — preview"
+      trackName="Estelle"
       artworkAlt="Artwork — Estelle (placeholder)"
     />
 
@@ -92,7 +103,7 @@ import { nl } from '../../i18n/nl';
         <SpotifyEmbed
           type="album"
           id="7yY1t6U4nDXv5sG1LXnAol"
-          label="Coming soon — full album"
+          label={nl.music.albumStatus}
         />
       </div>
     </div>
