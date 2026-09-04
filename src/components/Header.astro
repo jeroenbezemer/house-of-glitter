@@ -22,11 +22,12 @@ const navItems = pageKeys.map((key) => ({
 }));
 
 const homeHref = routes.home[lang];
+const menuLabel = lang === 'nl' ? 'Menu openen' : 'Open menu';
 ---
 
 <header class="sticky top-0 z-50 border-b border-hog-gold/40 bg-hog-purple/95 backdrop-blur-sm">
   <nav class="mx-auto flex max-w-4xl items-center justify-between px-4 py-4">
-    <a href={homeHref} class="font-display text-xl font-semibold text-hog-gold hover:text-hog-goldBright">
+    <a href={homeHref} class="hog-focus-ring font-display text-xl font-semibold text-hog-gold hover:text-hog-goldBright">
       House of Glitter
     </a>
 
@@ -39,7 +40,7 @@ const homeHref = routes.home[lang];
               <a
                 href={item.href}
                 class:list={[
-                  'hog-nav-link relative pb-1 text-hog-text hover:text-hog-goldBright',
+                  'hog-nav-link hog-focus-ring relative pb-1 text-hog-text hover:text-hog-goldBright',
                   { 'text-hog-goldBright hog-nav-link--active': item.key === page },
                 ]}
               >
@@ -57,8 +58,8 @@ const homeHref = routes.home[lang];
           aria-label="English"
           aria-current={lang === 'en' ? 'true' : undefined}
           class:list={[
-            'transition-colors',
-            lang === 'en' ? 'text-hog-gold' : 'text-hog-text/40 hover:text-hog-goldBright',
+            'hog-focus-ring transition-colors',
+            lang === 'en' ? 'text-hog-gold' : 'text-hog-text/65 hover:text-hog-goldBright',
           ]}
         >
           EN
@@ -69,8 +70,8 @@ const homeHref = routes.home[lang];
           aria-label="Nederlands"
           aria-current={lang === 'nl' ? 'true' : undefined}
           class:list={[
-            'transition-colors',
-            lang === 'nl' ? 'text-hog-gold' : 'text-hog-text/40 hover:text-hog-goldBright',
+            'hog-focus-ring transition-colors',
+            lang === 'nl' ? 'text-hog-gold' : 'text-hog-text/65 hover:text-hog-goldBright',
           ]}
         >
           NL
@@ -82,10 +83,10 @@ const homeHref = routes.home[lang];
     <button
       id="hog-menu-toggle"
       type="button"
-      class="flex h-9 w-9 flex-col items-center justify-center gap-1.5 md:hidden"
+      class="hog-focus-ring flex h-9 w-9 flex-col items-center justify-center gap-1.5 md:hidden"
       aria-controls="hog-mobile-menu"
       aria-expanded="false"
-      aria-label="Menu openen"
+      aria-label={menuLabel}
     >
       <span class="h-0.5 w-6 rounded bg-hog-gold transition-transform"></span>
       <span class="h-0.5 w-6 rounded bg-hog-gold transition-opacity"></span>
@@ -104,7 +105,7 @@ const homeHref = routes.home[lang];
           <a
             href={item.href}
             class:list={[
-              'block rounded px-2 py-2 text-hog-text hover:text-hog-goldBright',
+              'hog-focus-ring block px-2 py-2 text-hog-text hover:text-hog-goldBright',
               { 'text-hog-goldBright underline decoration-hog-gold underline-offset-4': item.key === page },
             ]}
           >
@@ -118,7 +119,7 @@ const homeHref = routes.home[lang];
         href={routes[page].en}
         aria-label="English"
         aria-current={lang === 'en' ? 'true' : undefined}
-        class:list={[lang === 'en' ? 'text-hog-gold' : 'text-hog-text/40 hover:text-hog-goldBright']}
+        class:list={['hog-focus-ring', lang === 'en' ? 'text-hog-gold' : 'text-hog-text/65 hover:text-hog-goldBright']}
       >
         EN
       </a>
@@ -127,7 +128,7 @@ const homeHref = routes.home[lang];
         href={routes[page].nl}
         aria-label="Nederlands"
         aria-current={lang === 'nl' ? 'true' : undefined}
-        class:list={[lang === 'nl' ? 'text-hog-gold' : 'text-hog-text/40 hover:text-hog-goldBright']}
+        class:list={['hog-focus-ring', lang === 'nl' ? 'text-hog-gold' : 'text-hog-text/65 hover:text-hog-goldBright']}
       >
         NL
       </a>

@@ -2,7 +2,7 @@
 import Header from './Header.astro';
 import Footer from './Footer.astro';
 import '../styles/global.css';
-import type { Locale, PageKey } from '../i18n/routes';
+import { routes, type Locale, type PageKey } from '../i18n/routes';
 
 interface Props {
   title?: string;
@@ -11,12 +11,28 @@ interface Props {
   page?: PageKey;
 }
 
+const defaultDescriptions: Record<Locale, string> = {
+  en: 'House of Glitter — bold creativity and unapologetic self-expression.',
+  nl: 'House of Glitter — gedurfde creativiteit en onverbloemde zelfexpressie.',
+};
+
+const ogLocales: Record<Locale, string> = {
+  en: 'en_US',
+  nl: 'nl_NL',
+};
+
 const {
-  title = 'House of Glitter',
-  description = 'House of Glitter — To Glitter or Die',
   lang = 'en',
   page = 'home',
+  title = 'House of Glitter',
+  description = defaultDescriptions[lang],
 } = Astro.props;
+
+const siteOrigin = Astro.site ?? new URL('https://house-of-glitter-production.up.railway.app');
+const canonicalUrl = new URL(routes[page][lang], siteOrigin).toString();
+const enUrl = new URL(routes[page].en, siteOrigin).toString();
+const nlUrl = new URL(routes[page].nl, siteOrigin).toString();
+const ogImageUrl = new URL('/og-image.jpg', siteOrigin).toString();
 ---
 
 <!doctype html>
@@ -24,16 +40,52 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="description" content={description} />
     <title>{title}</title>
+
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="nl" href={nlUrl} />
+    <link rel="alternate" hreflang="x-default" href={enUrl} />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="House of Glitter" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:locale" content={ogLocales[lang]} />
+    <meta property="og:locale:alternate" content={ogLocales[lang === 'en' ? 'nl' : 'en']} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
   </head>
   <body class="flex min-h-screen flex-col">
     <Header lang={lang} page={page} />

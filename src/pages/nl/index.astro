@@ -7,8 +7,14 @@ import { nl } from '../../i18n/nl';
   <section class="flex flex-col items-center gap-6 py-8 text-center">
     <img
       src="/wapenschild.jpg"
+      srcset="/wapenschild-384w.jpg 384w, /wapenschild.jpg 768w"
+      sizes="(min-width: 640px) 384px, 288px"
       alt="Familiewapen House of Glitter"
+      width="768"
+      height="1152"
       class="w-72 max-w-full rounded-lg drop-shadow-[0_0_35px_rgba(212,175,55,0.55)] sm:w-96"
+      loading="eager"
+      fetchpriority="high"
     />
     <h1 class="text-4xl font-bold sm:text-5xl">House of Glitter</h1>
     <p class="font-display text-xl italic text-hog-goldBright sm:text-2xl">To Glitter or Die</p>

@@ -53,4 +53,10 @@
   .hog-card {
     @apply rounded-xl border border-hog-gold/60 bg-hog-purpleLight/30 p-6 shadow-lg backdrop-blur-sm;
   }
+
+  /* Consistent visible focus state for keyboard navigation (not shown on
+     mouse/touch interaction, thanks to :focus-visible). */
+  .hog-focus-ring {
+    @apply rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-hog-goldBright focus-visible:ring-offset-2 focus-visible:ring-offset-hog-purple;
+  }
 }

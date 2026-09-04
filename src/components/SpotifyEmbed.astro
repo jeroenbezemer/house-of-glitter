@@ -21,7 +21,7 @@ const src = `https://open.spotify.com/embed/${type}/${id}`;
             href={ctaHref}
             target="_blank"
             rel="noopener noreferrer"
-            class="shrink-0 rounded py-1.5 font-body text-sm font-semibold text-hog-gold underline decoration-hog-gold/60 underline-offset-4 hover:text-hog-goldBright"
+            class="hog-focus-ring shrink-0 py-1.5 font-body text-sm font-semibold text-hog-gold underline decoration-hog-gold/60 underline-offset-4 hover:text-hog-goldBright"
           >
             {ctaLabel}
           </a>
@@ -39,5 +39,6 @@ const src = `https://open.spotify.com/embed/${type}/${id}`;
     allowfullscreen
     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
     loading="lazy"
+    title={label ?? `Spotify ${type} embed`}
   ></iframe>
 </div>
