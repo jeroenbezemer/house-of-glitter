@@ -18,21 +18,13 @@ const singleTrackId = '4hjOax118vWOwYnl5fAwXV';
 
   <div class="flex flex-col gap-8">
     <!-- 1. Single: To Glitter or Die (Beach Club Anthem) — live on Spotify -->
-    <div class="flex flex-col items-start gap-3">
-      <SpotifyEmbed
-        type="track"
-        id={singleTrackId}
-        label="To Glitter or Die (Beach Club Anthem)"
-      />
-      <a
-        href={`https://open.spotify.com/track/${singleTrackId}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex min-h-11 items-center rounded px-1 font-body font-semibold text-hog-gold underline decoration-hog-gold/60 underline-offset-4 hover:text-hog-goldBright"
-      >
-        {en.music.listenOnSpotify}
-      </a>
-    </div>
+    <SpotifyEmbed
+      type="track"
+      id={singleTrackId}
+      label="To Glitter or Die (Beach Club Anthem)"
+      ctaLabel={en.music.listenOnSpotify}
+      ctaHref={`https://open.spotify.com/track/${singleTrackId}`}
+    />
 
     <!-- TODO: AudioPreview-kaart wordt hier niet meer gerenderd nu de single
          live staat op Spotify. Referentie bewaard voor eventueel hergebruik

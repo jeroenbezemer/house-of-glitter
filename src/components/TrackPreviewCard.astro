@@ -16,7 +16,7 @@ const { heading, badge, artworkSrc, artworkAlt, audioSrc, trackName } = Astro.pr
 <div class="hog-card w-full">
   <p class="mb-4 font-display text-hog-goldBright">{heading}</p>
 
-  <div class="flex items-center gap-4">
+  <div class="flex items-stretch gap-4">
     {
       artworkSrc ? (
         <img
@@ -38,10 +38,13 @@ const { heading, badge, artworkSrc, artworkAlt, audioSrc, trackName } = Astro.pr
       )
     }
 
-    <p class="font-display text-xs italic uppercase tracking-widest text-hog-gold">{badge}</p>
-  </div>
-
-  <div class="mt-4">
-    <AudioPreview src={audioSrc} trackName={trackName} />
+    <div class="grid min-w-0 flex-1 grid-rows-2">
+      <div class="flex items-center">
+        <p class="font-display text-xs italic uppercase tracking-widest text-hog-gold">{badge}</p>
+      </div>
+      <div class="flex items-center">
+        <AudioPreview src={audioSrc} trackName={trackName} />
+      </div>
+    </div>
   </div>
 </div>

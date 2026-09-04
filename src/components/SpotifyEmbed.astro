@@ -3,14 +3,32 @@ interface Props {
   type: 'track' | 'album';
   id: string;
   label?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
 }
 
-const { type, id, label } = Astro.props;
+const { type, id, label, ctaLabel, ctaHref } = Astro.props;
 const src = `https://open.spotify.com/embed/${type}/${id}`;
 ---
 
 <div class="hog-card w-full">
-  {label && <p class="mb-3 font-display text-hog-goldBright">{label}</p>}
+  {
+    (label || (ctaLabel && ctaHref)) && (
+      <div class="mb-3 flex items-center justify-between gap-4">
+        {label && <p class="font-display text-hog-goldBright">{label}</p>}
+        {ctaLabel && ctaHref && (
+          <a
+            href={ctaHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="shrink-0 rounded py-1.5 font-body text-sm font-semibold text-hog-gold underline decoration-hog-gold/60 underline-offset-4 hover:text-hog-goldBright"
+          >
+            {ctaLabel}
+          </a>
+        )}
+      </div>
+    )
+  }
   <iframe
     class="rounded-lg"
     style="border-radius:12px"
