@@ -2,10 +2,10 @@
 import Layout from '../components/Layout.astro';
 import VerdictEmbed from '../components/VerdictEmbed.astro';
 import { en } from '../i18n/en';
+import { VERDICT_VOTE_URL } from '../config';
 
 // TODO: e-mail, Instagram en Spotify-profiel-link worden aan het einde van de
 // MVP (Fase 4) ingevuld met de echte gegevens.
-const VERDICT_URL = 'https://verdict-feature-test-environment.up.railway.app/stem/combi-2-34ce36';
 ---
 
 <Layout title="House of Glitter — Contact" lang="en" page="contact">
@@ -18,5 +18,5 @@ const VERDICT_URL = 'https://verdict-feature-test-environment.up.railway.app/ste
       <li>Spotify: <span class="italic text-hog-text/50">TODO</span></li>
     </ul>
   </div>
-  <VerdictEmbed src={VERDICT_URL} label={en.contact.voteLabel} />
+  <VerdictEmbed src={VERDICT_VOTE_URL} label={en.contact.voteLabel} />
 </Layout>
