@@ -16,20 +16,37 @@ import { en } from '../i18n/en';
   </div>
 
   <div class="flex flex-col gap-8">
-    <!-- 1. Single: To Glitter or Die (Beach Club Anthem) -->
-    <!-- TODO: zodra deze single live staat op Spotify, vervang deze kaart
-         door een <SpotifyEmbed type="track" id="..." label="To Glitter or
-         Die (Beach Club Anthem)" />, net als hieronder bewaard voor
-         Glitter Boy en Estelle. -->
-    <TrackPreviewCard
-      heading="To Glitter or Die (Beach Club Anthem)"
-      title="To Glitter or Die"
-      badge={en.music.comingSoon}
-      artworkSrc="/images/covers/to-glitter-or-die-single.png"
-      artworkAlt="Cover art — To Glitter or Die (Beach Club Anthem)"
-      audioSrc="/audio/previews/to-glitter-or-die-beach-club-anthem-preview.mp3"
-      audioLabel="To Glitter or Die (Beach Club Anthem) — preview"
-    />
+    <!-- 1. Single: To Glitter or Die (Beach Club Anthem) — live on Spotify -->
+    <div class="flex flex-col gap-6 sm:flex-row sm:items-start">
+      <img
+        src="/images/covers/to-glitter-or-die-single.png"
+        alt="Cover art — To Glitter or Die (Beach Club Anthem)"
+        class="w-48 shrink-0 rounded-xl border border-hog-gold object-cover sm:w-56"
+      />
+      <div class="flex-1">
+        <SpotifyEmbed
+          type="track"
+          id="77Wl1Pelu6oOUBWUI6AU09"
+          label="To Glitter or Die (Beach Club Anthem)"
+        />
+      </div>
+    </div>
+
+    <!-- TODO: AudioPreview-kaart wordt hier niet meer gerenderd nu de single
+         live staat op Spotify. Referentie bewaard voor eventueel hergebruik
+         bij een volgende nog-niet-uitgebrachte single.
+    {(
+      <TrackPreviewCard
+        heading="To Glitter or Die (Beach Club Anthem)"
+        title="To Glitter or Die"
+        badge={en.music.comingSoon}
+        artworkSrc="/images/covers/to-glitter-or-die-single.png"
+        artworkAlt="Cover art — To Glitter or Die (Beach Club Anthem)"
+        audioSrc="/audio/previews/to-glitter-or-die-beach-club-anthem-preview.mp3"
+        audioLabel="To Glitter or Die (Beach Club Anthem) — preview"
+      />
+    )}
+    -->
 
     <!-- 2. Glitter Boy -->
     <TrackPreviewCard
