@@ -1,0 +1,44 @@
+---
+interface Props {
+  src: string;
+  label?: string;
+  id?: string;
+}
+
+const { src, label, id = 'verdict-embed' } = Astro.props;
+// Voor de postMessage-origin-check hieronder: alleen berichten van de Verdict-origin
+// zelf vertrouwen, afgeleid van dezelfde src zodat dit niet los kan raken van de URL.
+const verdictOrigin = new URL(src).origin;
+---
+
+<div class="hog-card w-full">
+  {label && <p class="mb-3 font-display text-hog-goldBright">{label}</p>}
+  <iframe
+    id={id}
+    class="rounded-lg"
+    style="border-radius:12px; border:0"
+    src={src}
+    width="100%"
+    height="600"
+    loading="lazy"
+    title="Stem mee"
+  ></iframe>
+</div>
+
+<script define:vars={{ id, verdictOrigin }}>
+  // Laat de iframe-hoogte meebewegen met de content van de ingesloten Verdict-pagina
+  // (aantal inzendingen, in-/uitgeklapte tekst, wisselende stappen). Zie EMBEDDING.md
+  // in de Verdict-repo voor de tegenhanger die deze berichten verstuurt.
+  window.addEventListener('message', (event) => {
+    // Alleen berichten van Verdict zelf vertrouwen — anders kan elke pagina met een
+    // referentie naar deze pagina de iframe-hoogte manipuleren.
+    if (event.origin !== verdictOrigin) return;
+    const data = event.data;
+    if (!data || data.source !== 'verdict-embed' || data.type !== 'resize') return;
+    if (typeof data.height !== 'number') return;
+    const iframe = document.getElementById(id);
+    if (iframe) {
+      iframe.style.height = `${data.height}px`;
+    }
+  });
+</script>

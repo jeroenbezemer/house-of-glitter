@@ -19,5 +19,6 @@ export const nl = {
   contact: {
     intro:
       "Heb je een vraag, een samenwerkingsidee, of wil je gewoon even hallo zeggen? We horen graag van je.",
+    voteLabel: "Stem mee",
   },
 } as const;
