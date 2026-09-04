@@ -83,20 +83,25 @@ const singleTrackId = '4hjOax118vWOwYnl5fAwXV';
   <!-- 4. Full album, visueel gescheiden van de singles hierboven -->
   <div class="mt-14 border-t border-hog-gold/30 pt-10">
     <h2 class="mb-4 text-2xl font-bold">Full Album</h2>
-    <div class="flex flex-col gap-6 sm:flex-row sm:items-start">
+    <div class="flex flex-col gap-6 sm:flex-row sm:items-center">
       <img
         src="/images/covers/to-glitter-or-die-album.png"
         alt="Album cover — To Glitter or Die"
         class="w-48 shrink-0 rounded-xl border border-hog-gold object-cover sm:w-56"
       />
       <div class="flex-1">
-        <!-- TODO: dit is tijdelijke albuminhoud. Vervang door het echte album
-             zodra dat gereleased is. -->
+        <!-- TODO: Album-ID en widget terugzetten zodra het volledige album
+             een releasedatum heeft. -->
+        <div class="hog-card w-full">
+          <p class="font-display text-hog-goldBright">{en.music.albumStatus}</p>
+        </div>
+        <!--
         <SpotifyEmbed
           type="album"
           id="7yY1t6U4nDXv5sG1LXnAol"
           label={en.music.albumStatus}
         />
+        -->
       </div>
     </div>
   </div>

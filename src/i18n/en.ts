@@ -6,7 +6,7 @@ export const en = {
   music: {
     description:
       "Bright, bold and unapologetically pop. Our music is a vibrant mix of contemporary pop, pop-rock and disco, with playful detours into unexpected sounds and influences. Think catchy hooks, energetic melodies, uplifting lyrics and a generous dose of glitter. At the heart of it all is music that invites you to step into the light, embrace who you are and let yourself shine. Each song has its own personality, from rebellious pop-rock and feel-good disco to the occasional Balkan-inspired adventure, but they all share the same spirit: be bold, be bright, and let your sparkle show.",
-    comingSoon: "Coming soon on Spotify",
+    comingSoon: "On the way — no release date yet.",
     playPreview: (trackName: string) => `Play a preview of ${trackName}`,
     pausePreview: (trackName: string) => `Pause preview of ${trackName}`,
     albumStatus: "More music is on the way — no release date yet.",

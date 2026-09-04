@@ -6,7 +6,7 @@ export const nl = {
   music: {
     description:
       "Fel, gedurfd en onvervalst pop. Onze muziek is een levendige mix van hedendaagse pop, pop-rock en disco, met speelse uitstapjes naar onverwachte klanken en invloeden. Denk aan pakkende hooks, energieke melodieën, opbeurende teksten en een flinke dosis glitter. In de kern draait het om muziek die je uitnodigt om in het licht te stappen, jezelf te omarmen en te stralen. Elk nummer heeft zijn eigen persoonlijkheid, van opstandige pop-rock en feelgood disco tot een enkel Balkan-geïnspireerd avontuur, maar ze delen allemaal dezelfde geest: wees gedurfd, wees fel, en laat je glitter zien.",
-    comingSoon: "Binnenkort op Spotify",
+    comingSoon: "Onderweg — nog geen releasedatum bekend.",
     playPreview: (trackName: string) => `Beluister een preview van ${trackName}`,
     pausePreview: (trackName: string) => `Pauzeer preview van ${trackName}`,
     albumStatus: "Er komt meer muziek aan — nog geen releasedatum bekend.",
