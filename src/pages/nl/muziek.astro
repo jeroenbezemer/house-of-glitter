@@ -17,20 +17,11 @@ import { nl } from '../../i18n/nl';
 
   <div class="flex flex-col gap-8">
     <!-- 1. Single: To Glitter or Die (Beach Club Anthem) — live op Spotify -->
-    <div class="flex flex-col gap-6 sm:flex-row sm:items-start">
-      <img
-        src="/images/covers/to-glitter-or-die-single.png"
-        alt="Cover art — To Glitter or Die (Beach Club Anthem)"
-        class="w-48 shrink-0 rounded-xl border border-hog-gold object-cover sm:w-56"
-      />
-      <div class="flex-1">
-        <SpotifyEmbed
-          type="track"
-          id="4hjOax118vWOwYnl5fAwXV"
-          label="To Glitter or Die (Beach Club Anthem)"
-        />
-      </div>
-    </div>
+    <SpotifyEmbed
+      type="track"
+      id="4hjOax118vWOwYnl5fAwXV"
+      label="To Glitter or Die (Beach Club Anthem)"
+    />
 
     <!-- TODO: AudioPreview-kaart wordt hier niet meer gerenderd nu de single
          live staat op Spotify. Referentie bewaard voor eventueel hergebruik
@@ -38,7 +29,6 @@ import { nl } from '../../i18n/nl';
     {(
       <TrackPreviewCard
         heading="To Glitter or Die (Beach Club Anthem)"
-        title="To Glitter or Die"
         badge={nl.music.comingSoon}
         artworkSrc="/images/covers/to-glitter-or-die-single.png"
         artworkAlt="Cover art — To Glitter or Die (Beach Club Anthem)"
@@ -51,7 +41,7 @@ import { nl } from '../../i18n/nl';
     <!-- 2. Glitter Boy -->
     <TrackPreviewCard
       heading="Glitter Boy"
-      title="Glitter Boy"
+      badge={nl.music.comingSoon}
       audioSrc="/audio/previews/glitter-boy-preview.mp3"
       audioLabel="Glitter Boy — preview"
       artworkAlt="Artwork — Glitter Boy (placeholder)"
@@ -60,7 +50,7 @@ import { nl } from '../../i18n/nl';
     <!-- 3. Estelle -->
     <TrackPreviewCard
       heading="Estelle"
-      title="Estelle"
+      badge={nl.music.comingSoon}
       audioSrc="/audio/previews/estelle-preview.mp3"
       audioLabel="Estelle — preview"
       artworkAlt="Artwork — Estelle (placeholder)"

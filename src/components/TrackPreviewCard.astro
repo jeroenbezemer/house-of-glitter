@@ -3,53 +3,45 @@ import AudioPreview from './AudioPreview.astro';
 
 interface Props {
   heading: string;
-  title: string;
-  badge?: string;
+  badge: string;
   artworkSrc?: string;
   artworkAlt: string;
   audioSrc: string;
   audioLabel: string;
 }
 
-const { heading, title, badge, artworkSrc, artworkAlt, audioSrc, audioLabel } = Astro.props;
+const { heading, badge, artworkSrc, artworkAlt, audioSrc, audioLabel } = Astro.props;
 ---
 
 <div class="hog-card w-full">
   <p class="mb-4 font-display text-hog-goldBright">{heading}</p>
-  <div class="flex items-stretch gap-4">
+
+  <div class="flex items-center gap-4">
     {
       artworkSrc ? (
         <img
           src={artworkSrc}
           alt={artworkAlt}
-          class="h-28 w-28 shrink-0 rounded-lg object-cover sm:h-[150px] sm:w-[150px]"
+          class="h-20 w-20 shrink-0 rounded-lg object-cover sm:h-24 sm:w-24"
         />
       ) : (
         // TODO: echte artwork wordt later toegevoegd — dit is nog een
         // neutrale placeholder.
         <div
-          class="flex h-28 w-28 shrink-0 items-center justify-center rounded-lg border border-hog-gold bg-hog-purple sm:h-[150px] sm:w-[150px]"
+          class="flex h-20 w-20 shrink-0 items-center justify-center rounded-lg border border-hog-gold bg-hog-purple sm:h-24 sm:w-24"
           aria-hidden="true"
         >
-          <svg class="h-8 w-8 text-hog-gold sm:h-10 sm:w-10" viewBox="0 0 24 24" fill="currentColor">
+          <svg class="h-7 w-7 text-hog-gold sm:h-8 sm:w-8" viewBox="0 0 24 24" fill="currentColor">
             <path d="M9 3v10.55A4 4 0 1 0 11 17V7h4V3H9z" />
           </svg>
         </div>
       )
     }
 
-    <div class="grid min-w-0 flex-1 grid-rows-2">
-      <div class="flex flex-col justify-start">
-        <p class="font-bold text-hog-text">{title}</p>
-        {badge && (
-          <p class="mt-1 font-display text-xs italic uppercase tracking-widest text-hog-gold">
-            {badge}
-          </p>
-        )}
-      </div>
-      <div class="flex items-center">
-        <AudioPreview src={audioSrc} label={audioLabel} />
-      </div>
-    </div>
+    <p class="font-display text-xs italic uppercase tracking-widest text-hog-gold">{badge}</p>
+  </div>
+
+  <div class="mt-4">
+    <AudioPreview src={audioSrc} label={audioLabel} />
   </div>
 </div>
