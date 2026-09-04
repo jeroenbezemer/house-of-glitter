@@ -19,5 +19,6 @@ export const en = {
   contact: {
     intro:
       "Got a question, a collab idea, or just want to say hi? We'd love to hear from you.",
+    voteLabel: "Cast your vote",
   },
 } as const;
