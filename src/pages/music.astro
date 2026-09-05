@@ -3,10 +3,7 @@ import Layout from '../components/Layout.astro';
 import SpotifyEmbed from '../components/SpotifyEmbed.astro';
 import TrackPreviewCard from '../components/TrackPreviewCard.astro';
 import { en } from '../i18n/en';
-
-// TODO: dit zijn tijdelijke Spotify-ID's. Vervang deze zodra de echte releases
-// live staan.
-const singleTrackId = '4hjOax118vWOwYnl5fAwXV';
+import { SPOTIFY_SINGLE_TRACK_ID, SPOTIFY_SINGLE_TRACK_URL } from '../data/socials';
 ---
 
 <Layout title="House of Glitter — Music" lang="en" page="music">
@@ -20,10 +17,10 @@ const singleTrackId = '4hjOax118vWOwYnl5fAwXV';
     <!-- 1. Single: To Glitter or Die (Beach Club Anthem) — live on Spotify -->
     <SpotifyEmbed
       type="track"
-      id={singleTrackId}
+      id={SPOTIFY_SINGLE_TRACK_ID}
       label="To Glitter or Die (Beach Club Anthem)"
       ctaLabel={en.music.listenOnSpotify}
-      ctaHref={`https://open.spotify.com/track/${singleTrackId}`}
+      ctaHref={SPOTIFY_SINGLE_TRACK_URL}
     />
 
     <!-- TODO: AudioPreview-kaart wordt hier niet meer gerenderd nu de single

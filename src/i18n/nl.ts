@@ -5,6 +5,7 @@ export const nl = {
     announcement:
       'Onze debuutsingle "To Glitter or Die" is nu te horen. Welkom bij de familie.',
     cta: "Nu luisteren",
+    otherTracksLink: "Beluister previews van onze andere nummers",
   },
   music: {
     description:
@@ -28,5 +29,6 @@ export const nl = {
       "Heb je een vraag, een samenwerkingsidee, of wil je gewoon even hallo zeggen? We horen graag van je.",
     instagramComingSoon: "Binnenkort beschikbaar",
     spotifyCta: "Beluister op Spotify",
+    otherTracksLink: "Beluister previews van onze andere nummers",
   },
 } as const;

@@ -2,6 +2,7 @@
 import Layout from '../../components/Layout.astro';
 import { nl } from '../../i18n/nl';
 import { routes } from '../../i18n/routes';
+import { SPOTIFY_SINGLE_TRACK_URL } from '../../data/socials';
 ---
 
 <Layout title="House of Glitter — Home" lang="nl" page="home">
@@ -22,10 +23,15 @@ import { routes } from '../../i18n/routes';
     <p class="max-w-xl font-body text-hog-text/90">{nl.home.intro}</p>
     <p class="max-w-xl font-body text-hog-text/90">{nl.home.announcement}</p>
     <a
-      href={routes.music.nl}
+      href={SPOTIFY_SINGLE_TRACK_URL}
+      target="_blank"
+      rel="noopener noreferrer"
       class="hog-focus-ring rounded-full bg-hog-gold px-8 py-3 font-display font-semibold text-hog-purple transition hover:bg-hog-goldBright"
     >
       {nl.home.cta}
+    </a>
+    <a href={routes.music.nl} class="hog-focus-ring text-sm text-hog-text/65 hover:text-hog-text/90">
+      {nl.home.otherTracksLink}
     </a>
   </section>
 

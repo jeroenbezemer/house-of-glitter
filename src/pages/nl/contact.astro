@@ -1,7 +1,8 @@
 ---
 import Layout from '../../components/Layout.astro';
 import { nl } from '../../i18n/nl';
-import { EMAIL, SPOTIFY_ARTIST_URL } from '../../data/socials';
+import { EMAIL, SPOTIFY_SINGLE_TRACK_URL } from '../../data/socials';
+import { routes } from '../../i18n/routes';
 
 // TODO: Instagram-link wordt toegevoegd zodra het account live is.
 ---
@@ -18,13 +19,21 @@ import { EMAIL, SPOTIFY_ARTIST_URL } from '../../data/socials';
       <li>
         Spotify:
         <a
-          href={SPOTIFY_ARTIST_URL}
+          href={SPOTIFY_SINGLE_TRACK_URL}
           target="_blank"
           rel="noopener noreferrer"
           class="hog-focus-ring text-hog-gold hover:text-hog-goldBright"
         >
           {nl.contact.spotifyCta}
         </a>
+        <div>
+          <a
+            href={routes.music.nl}
+            class="hog-focus-ring text-sm text-hog-text/65 hover:text-hog-text/90"
+          >
+            {nl.contact.otherTracksLink}
+          </a>
+        </div>
       </li>
     </ul>
   </div>

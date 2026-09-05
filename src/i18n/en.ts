@@ -5,6 +5,7 @@ export const en = {
     announcement:
       'Our debut single, "To Glitter or Die," is out now. Welcome to the family.',
     cta: "Listen now",
+    otherTracksLink: "Listen to previews of our other tracks",
   },
   music: {
     description:
@@ -28,5 +29,6 @@ export const en = {
       "Got a question, a collab idea, or just want to say hi? We'd love to hear from you.",
     instagramComingSoon: "Coming soon",
     spotifyCta: "Listen on Spotify",
+    otherTracksLink: "Listen to previews of our other tracks",
   },
 } as const;
