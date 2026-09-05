@@ -1,7 +1,10 @@
 export const nl = {
   home: {
     intro:
-      "Welkom bij House of Glitter, een thuis voor gedurfde creativiteit en onverbloemde zelfexpressie. Geluid, stijl, verhaal: waar het ook opduikt, dit is de plek voor felle kleuren, groot karakter en het lef om te zijn wie je bent. Stap naar binnen, en laat je glitter zien.",
+      "House of Glitter is geen plek, het is een bloedlijn. Wij zijn de Glitterfamily: fel, briljant en gebouwd voor het spotlicht.",
+    announcement:
+      'Onze debuutsingle "To Glitter or Die" is nu te horen. Welkom bij de familie.',
+    cta: "Nu luisteren",
   },
   music: {
     description:
@@ -23,5 +26,7 @@ export const nl = {
   contact: {
     intro:
       "Heb je een vraag, een samenwerkingsidee, of wil je gewoon even hallo zeggen? We horen graag van je.",
+    instagramComingSoon: "Binnenkort beschikbaar",
+    spotifyCta: "Beluister op Spotify",
   },
 } as const;

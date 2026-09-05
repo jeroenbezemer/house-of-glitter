@@ -1,7 +1,10 @@
 export const en = {
   home: {
     intro:
-      "Welcome to House of Glitter, a home for bold creativity and unapologetic self-expression. Sound, style, story: wherever it shows up, this is a place for bright colors, big personality and the confidence to own who you are. Step inside, and let your sparkle show.",
+      "House of Glitter isn't a place, it's a bloodline. We are the Glitterfamily: bold, brilliant, and built for the spotlight.",
+    announcement:
+      'Our debut single, "To Glitter or Die," is out now. Welcome to the family.',
+    cta: "Listen now",
   },
   music: {
     description:
@@ -23,5 +26,7 @@ export const en = {
   contact: {
     intro:
       "Got a question, a collab idea, or just want to say hi? We'd love to hear from you.",
+    instagramComingSoon: "Coming soon",
+    spotifyCta: "Listen on Spotify",
   },
 } as const;
